@@ -4,16 +4,16 @@ PORT="$1"
 
 # FIXME: start backup and stop backup for snapshot
 # Stop psql_master
-docker-compose --project-directory docker stop psql_master
+docker-compose --project-directory ../docker stop psql_master
 
 # Create snapshot
 btrfs subvolume snapshot /btrfs/psql_master "/btrfs/psql_clone_${PORT}"
 
 # Start psql_master
-docker-compose --project-directory docker start psql_master
+docker-compose --project-directory ../docker start psql_master
 
 # Create new clone
-export $(grep -v '^#' docker/.env | xargs)
+export $(grep -v '^#' ../docker/.env | xargs)
 docker run \
     --name "psql_clone_${PORT}" \
     -p ${PORT}:5432 \

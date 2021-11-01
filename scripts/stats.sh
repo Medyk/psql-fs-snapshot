@@ -1,4 +1,4 @@
 #!/bin/bash
 
 btrfs-du /btrfs
-docker ps -a
+docker ps --filter "name=psql-fs-snapshot" -a
