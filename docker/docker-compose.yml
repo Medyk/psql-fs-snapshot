@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  psql_master:
+    image: postgres:${DOCKER_IMAGE_POSTGRES_TAG:-latest}
+    restart: always
+    shm-size: 64M
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    ports:
+      - 5432:5432
+    volumes:
+      - ${BTRFS_ROOT}/psql_master/data:/var/lib/postgresql/data
+      - ./psql_master-initdb.d:/docker-entrypoint-initdb.d
+
+  adminer:
+    image: adminer:{DOCKER_IMAGE_ADMINER_TAG:-latest}
+    restart: always
+    ports:
+      - 8080:8080
