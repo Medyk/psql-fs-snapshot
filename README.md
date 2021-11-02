@@ -5,7 +5,9 @@ postgresql cloning with fs snapshots poc
 
 # concept
 
-create many "cloned" postgresql instances based on one "master" copy using filesystem
+create many "cloned" postgresql instances based on one "master" copy using filesystem snapshots
+
+`stats.sh` are using https://github.com/nachoparker/btrfs-du script
 
 
 
